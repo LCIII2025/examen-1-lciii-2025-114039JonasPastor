@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 
 import static junit.framework.Assert.*;
-import static org.example.parking.Vehiculo.Tipo.AUTO;
-import static org.example.parking.Vehiculo.Tipo.PICKUP;
+import static org.example.parking.Vehiculo.Tipo.*;
 
 public class EstacionamientoTest {
 
@@ -35,14 +34,20 @@ public class EstacionamientoTest {
     @Test
     public void testCalcularPrecio() throws Exception {
         // TODO test
-        Cliente cliente = new Cliente("12345678","Nombre");
-        Vehiculo vehiculo = new Vehiculo("FFF333","Fiat",AUTO);
-        Ticket ticket = new Ticket(cliente, vehiculo);
+        Cliente cliente1 = new Cliente("12345678","Nombre");
+        Vehiculo vehiculo1 = new Vehiculo("FFF333","Fiat",AUTO);
+        Ticket ticket1 = new Ticket(cliente1, vehiculo1);
+
+        Vehiculo vehiculo2 = new Vehiculo("AAA333","Fiat",SUV);
+        Ticket ticket2 = new Ticket(cliente1, vehiculo2);
+
+        Vehiculo vehiculo3 = new Vehiculo("BBB333","Fiat",PICKUP);
+        Ticket ticket3 = new Ticket(cliente1, vehiculo3);
 
         for (int i = 1; i < 201; i++){
-            ticket.calcularPrecio();
-            assertTrue(ticket.calcularPrecio() >= 0 && ticket.calcularPrecio() <= 20100);
+            assertTrue(ticket1.calcularPrecio() >= 0 && ticket1.calcularPrecio() <= 400);
+            assertTrue(ticket2.calcularPrecio() >= 0 && ticket2.calcularPrecio() <= 520);
+            assertTrue(ticket3.calcularPrecio() >= 0 && ticket3.calcularPrecio() <= 720);
         }
     }
-
 }

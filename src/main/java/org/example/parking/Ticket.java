@@ -7,6 +7,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+import static org.example.parking.Vehiculo.Tipo.*;
+
 @Data
 @AllArgsConstructor
 public class Ticket {
@@ -31,13 +33,24 @@ public class Ticket {
     }
 
     public double calcularPrecio() {
-        // TODO implementar el metodo para calcular el importe a abonar segun el tipo de vehiculo
+        // -TODO implementar el metodo para calcular el importe a abonar segun el tipo de vehiculo
         // AUTO -> 100, SUV -> 130, PICKUP -> 180
         // el importe es por hora redondeando el tiempo hacia arriba,
         // por ejemplo si estuvo 45 minutos se le tarifa por 60, si estuvo 80 minutos se le tarifa por 120 minutos, etc...
         // retornar el importe final
 
-        return 0;
+        double precio = Math.round((float) calcularMinutos() /60);
+        double importe = 0;
+
+        if(vehiculo.getTipo().equals(AUTO)){
+            importe = precio * 100;
+        } else if (vehiculo.getTipo().equals(SUV)) {
+            importe = precio * 130;
+        } else if (vehiculo.getTipo().equals(PICKUP)) {
+            importe = precio * 180;
+        }
+
+        return importe;
     }
 
 }
